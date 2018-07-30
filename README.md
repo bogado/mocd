@@ -38,3 +38,5 @@ void loop()
     test->make_magic()
 }
 ```
+
+This may make the first run of the loop have slightly different timings than the normal run, but this is something I'm willing to live with.
