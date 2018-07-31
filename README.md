@@ -29,7 +29,7 @@ To something like this :
 ```C++
 using my_device = mocd::controller<2>;
 
-void setup() { /* Nnothig expected here */ }
+void setup() { /* Nothig expected here */ }
 
 void loop()
 {
