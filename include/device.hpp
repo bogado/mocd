@@ -3,41 +3,7 @@
 
 #include "type_helper.hpp"
 
-namespace mocd
-{
-
-namespace
-{
-    using namespace mocd::types;
-}
-
-namespace details
-{
-
-template <typename CONTROLLER>
-constexpr auto begin(CONTROLLER& control) noexcept
-    -> typename enable_if<has_void_begin_t<CONTROLLER>::value, void>::type
-{
-    control.begin();
-}
-
-template <typename CONTROLLER>
-constexpr auto begin(CONTROLLER& control, ...) noexcept
-    -> typename enable_if_t<!has_void_begin_t<CONTROLLER>::value, void>::type
-{
-    // NO OP.
-    // All initialization is made on construction.
-}
-
-template <typename TYPE>
-inline TYPE default_builder() noexcept
-{
-    TYPE result;
-    begin(result);
-    return result;
-}
-
-}
+#include "details/device.hpp"
 
 template <typename TRAITS>
 class controller

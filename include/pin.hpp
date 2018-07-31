@@ -3,8 +3,16 @@
 
 #include <Arduino.h>
 
+#include "type_helper.hpp"
+
 namespace mocd
 {
+
+namespace
+{
+    using namespace mocd::types;
+}
+
 
 template <unsigned pin>
 class digital_out_pin_driver
