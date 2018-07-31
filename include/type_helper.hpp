@@ -1,6 +1,15 @@
 #ifndef TYPE_HELPER_HPP_INCLUDED
 #define TYPE_HELPER_HPP_INCLUDED
 
+/*
+ * This are some types that are usually defined on type_traits.
+ *
+ * Unfortunatelly not all toolchains have the whole std defined.
+ *
+ * ATTENTION: This implementations are quick and dirty and might not be 100%
+ * compatible with the same-named concepts on the standard.
+ */
+
 namespace mocd {
 namespace types {
 
