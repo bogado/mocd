@@ -5,6 +5,11 @@
 
 #include "details/device.hpp"
 
+/**
+ * Give access to the undelying driver class.
+ *
+ * Responsible for executing all the initializtions on first access.
+ */
 template <typename TRAITS>
 class controller
 {
@@ -31,6 +36,9 @@ public:
     }
 };
 
+/**
+ * Traits to enable customizations on how the controller interact with the driver class.
+ */
 template <typename DRIVER>
 class controller_traits
 {
@@ -38,6 +46,10 @@ public:
     using driver_type = DRIVER;
     using controller_type = controller<controller_traits>;
 
+    /**
+     * Method used to crate and initialize the driver.
+     */
+    template <typename... ARGS>
     constexpr static driver_type build_and_initialize() noexcept
     {
         return details::default_builder<driver_type>();

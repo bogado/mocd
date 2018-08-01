@@ -29,6 +29,7 @@ constexpr auto begin(CONTROLLER& control, ...) noexcept
     // All initialization is made on construction.
 }
 
+/// Default implementation of the build_and_initialize
 template <typename TYPE>
 inline TYPE default_builder() noexcept
 {
