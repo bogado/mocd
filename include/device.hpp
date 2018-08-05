@@ -17,6 +17,13 @@ class controller
 public:
     using driver_type = typename traits::driver_type;
 
+    controller() = default;
+    controller(controller&&) = default;
+    controller& operator= (controller&&) = default;
+
+    controller(const controller&) = delete;
+    controller& operator= (const controller&) = delete;
+
 private:
     static driver_type& get_driver() noexcept {
         static driver_type instance = traits::build_and_initialize();
@@ -36,6 +43,20 @@ public:
     }
 };
 
+template <typename CONTROLLER>
+typename CONTROLLER::driver_type build_and_initialize_driver(CONTROLLER&, ...)
+{
+    typename CONTROLLER::driver_type value;
+    begin(value);
+    return value;
+}
+
+template <typename T>
+constexpr void cleanup_driver(T&, ...)
+{
+    // NO OP by default.
+}
+
 /**
  * Traits to enable customizations on how the controller interact with the driver class.
  */
@@ -49,10 +70,14 @@ public:
     /**
      * Method used to crate and initialize the driver.
      */
-    template <typename... ARGS>
     constexpr static driver_type build_and_initialize() noexcept
     {
         return details::default_builder<driver_type>();
+    }
+
+    constexpr static void cleanup_driver(driver_type& driver) noexcept
+    {
+        cleanup_driver(driver);
     }
 };
 
