@@ -27,7 +27,7 @@ void loop()
 To something like this :
 
 ```C++
-using my_device = mocd::controller<2>;
+using my_device = mocd::device<magic_driver<2>>;
 
 void setup() { /* Nothig expected here */ }
 
