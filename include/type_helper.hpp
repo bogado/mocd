@@ -29,26 +29,22 @@ template <typename T>
 using begin_result = decltype(((T*)(0))->begin());
 
 template <typename T, typename V = void>
-struct has_void_begin
+struct has_begin
 {
     static constexpr bool value = false;
+    using type = void;
 };
 
 template <typename T>
-struct has_void_begin<T, begin_result<T>>
+struct has_begin<T, begin_result<T>>
 {
     static constexpr bool value = true;
-    using type = begin_result<T>;
+    using result = typename begin_result<T>::type;
+    using type = result;
 };
 
 template<typename T>
-using has_void_begin_t = has_void_begin<T>;
-
-template <typename CONTROLLER>
-constexpr begin_result<CONTROLLER> begin(CONTROLLER & control) noexcept
-{
-    return control.begin();
-}
+using has_begin_t = has_begin<T>;
 
 template <typename T, typename V, typename TEST = void>
 struct is_convertible

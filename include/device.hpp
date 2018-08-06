@@ -25,29 +25,30 @@ public:
     controller& operator= (const controller&) = delete;
 
 private:
-    static driver_type& get_driver() noexcept {
+    static driver_type& get_driver() noexcept
+    {
         static driver_type instance = traits::build_and_initialize();
 
         return instance;
     }
 
 public:
-    constexpr driver_type& operator*() noexcept
+    driver_type& operator*() noexcept
     {
         return get_driver();
     }
 
-    constexpr driver_type* operator->() noexcept
+    driver_type* operator->() noexcept
     {
         return &get_driver();
     }
 };
 
-template <typename CONTROLLER>
-typename CONTROLLER::driver_type build_and_initialize_driver(CONTROLLER&, ...)
+template <typename DRIVER>
+DRIVER build_and_initialize_driver(DRIVER*, ...)
 {
-    typename CONTROLLER::driver_type value;
-    begin(value);
+    DRIVER value;
+    details::exec_begin(value);
     return value;
 }
 
@@ -70,12 +71,12 @@ public:
     /**
      * Method used to crate and initialize the driver.
      */
-    constexpr static driver_type build_and_initialize() noexcept
+    static driver_type build_and_initialize() noexcept
     {
-        return details::default_builder<driver_type>();
+        return build_and_initialize_driver(static_cast<driver_type*>(nullptr));
     }
 
-    constexpr static void cleanup_driver(driver_type& driver) noexcept
+    static void cleanup_driver(driver_type& driver) noexcept
     {
         cleanup_driver(driver);
     }

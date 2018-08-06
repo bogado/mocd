@@ -18,6 +18,11 @@ template <unsigned pin>
 class digital_out_pin_driver
 {
 public:
+    digital_out_pin_driver()
+    {
+        pinMode(pin, OUTPUT);
+    }
+
     void set()
     {
         digitalWrite(pin, HIGH);
