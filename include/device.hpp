@@ -45,7 +45,7 @@ public:
 };
 
 template <typename DRIVER>
-DRIVER build_and_initialize_driver(DRIVER*, ...)
+DRIVER build_and_initialize_driver()
 {
     DRIVER value;
     details::exec_begin(value);
