@@ -24,6 +24,11 @@ public:
     controller(const controller&) = delete;
     controller& operator= (const controller&) = delete;
 
+    ~controller()
+    {
+        cleanup_driver(get_driver());
+    }
+
 private:
     static driver_type& get_driver() noexcept
     {
