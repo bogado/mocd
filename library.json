@@ -1,5 +1,27 @@
-"build": {
-    "unflags" : "-std=gnu++11",
-    "flags": "-std=c++17 -Dtypeof=decltype",
-    "include": "include"
+{
+    "name": "Mocd",
+    "version": "1.0.0",
+    "description": "This is a way of using RAII with embeded devices. All initialization goes into constructors, and constructors are invoked only once.",
+    "keywords": "c++17, raii, utility",
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/bogado/mocd.git"
+    },
+    "authors":
+    [
+        {
+            "name": "Victor Bogado da Silva Lins",
+            "email": "victor@bogado.net",
+            "url": "https://bogado.net/"
+        }
+    ],
+    "license": "MIT",
+    "frameworks": "arduino",
+    "platforms": "*",
+    "build": {
+        "unflags" : "-std=gnu++11",
+        "flags": "-std=c++17 -Dtypeof=decltype",
+        "include": "include"
+    }
 }
